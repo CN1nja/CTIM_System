@@ -1,0 +1,69 @@
+{% extends 'pathscan.html' %}
+
+{% block title %}
+    <title>子域名检测</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/my/css/pathscan.css">
+    <link rel="stylesheet" href="/static/my/css/search.css">
+{% endblock %}
+
+{% block search %}
+    <input type="text" ref="domain_submit" v-model="search_form.domain" placeholder="请输入域名如：baidu.com">
+    <button @click="subdomain_search">搜索</button>
+{% endblock %}
+
+{% block panel %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="body">
+        <div class="info_data">
+            <div class="path_data">
+                <el-table
+                        v-loading="loading"
+                        element-loading-text="扫描需要耗时几分钟，请耐心等待"
+                        :data="tableData"
+                        style="width: 100%"
+                        :row-class-name="tableRowClassName">
+                    <el-table-column
+                            prop="subdomain"
+                            label="检测存在的子域名"
+                            width="900">
+                    </el-table-column>
+                </el-table>
+            </div>
+
+        </div>
+        {#侧边安全信息小贴士#}
+        <div class="safe_tips">
+            <div class="tips_content">
+                <div class="title">
+                    漏洞危害
+                </div>
+                <div class="content_info">
+                    <p>子域名信息收集是黑客进行攻击时非常重要的一步。相对主站，分站的安全防范会弱一些，因此通过收集子域名信息来进行渗透攻击是目前常见的一种手法。</p>
+                    <p>有些隐藏的、被忽略的子域上运行的应用程序可能存在重大漏洞，在同一个组织的不同域或应用程序中往往也存在相同的漏洞。</p>
+                    <p>子域名被泄露往往会导致以下几个后果：</p>
+                    <p>● 恶意软件分发、网络钓鱼/鱼叉式网络钓鱼、XSS 、身份验证绕过、cookie窃取等等。</p>
+                    <p>● 由于某些证书颁发机构仅需要域验证，因此也可以轻松生成SSL证书。</p>
+                    <p>● 判断子域名存活，将不需要的子域名站点销毁。</p>
+                    <p>● 保持对域名的所有权，加强需要使用的分站点防护。</p>
+                </div>
+                <div class="title">
+                    修复建议
+                </div>
+                <div class="content_info">
+                    <p>● 判断子域名存活，将不需要的子域名站点销毁。</p>
+                    <p>● 保持对域名的所有权，加强需要使用的分站点防护。</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

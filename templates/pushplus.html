@@ -1,0 +1,35 @@
+{% extends 'pathscan.html' %}
+
+{% block title %}
+    <title>信息推送服务</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/my/css/pushplus.css">
+    <link rel="stylesheet" href="/static/my/css/search.css">
+{% endblock %}
+
+{% block search %}
+    <input ref="push_input" type="text" name="wd" v-model="search_form.token_info" placeholder="请输入你的pushplus token">
+    <button @click="token_push">提交</button>
+{% endblock %}
+
+{% block panel %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="pushplus_main">
+        <div class="content">
+            <h3>信息推送服务介绍</h3>
+            <p>由于本平台部分功能，执行等待时间稍长，为了方便用户随时随地能及时获取到检测结果，于是采用信息推送服务解决用户长时间等待问题。</p>
+            <p>信息推送服务采用 Pushplus 推送接口，一对一向用户推送消息。</p>
+                <p>在上方的输入栏输入自己的pushplus token信息后，
+                再次执行敏感路径扫描、子域名检测、CMS指纹识别功能，
+                其返回的数据信息将推送到用户的个人微信上，方便用户及时获取到检测结果。</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

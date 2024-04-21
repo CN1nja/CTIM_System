@@ -1,0 +1,88 @@
+{% extends "index.html" %}
+
+{% block title %}
+    <title>帮助文档</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/my/css/helpdoc.css">
+    <link rel="stylesheet" href="/static/my/css/search.css">
+{% endblock %}
+
+{% block search-box %}
+{% endblock %}
+
+{% block panel %}
+{% endblock %}
+
+{% block main %}
+    <div class="page_inner">
+        <div class="book">
+            <section class="markdown-section">
+                <h1>CITM帮助文档🐑</h1>
+                <h2>CTIM 网络威胁情报自主监测平台简介</h2>
+                <p class="text">网络威胁情报自主监测平台是一款应对非法入侵监测和自主安全检测的多功能综合防御平台。随着社会的进步，互联网科技的发展，人们在互联网时代面临的各类网络威胁也在逐年增多。
+                    信息泄露、恶意病毒入侵、系统漏洞等各种各样的网络安全问题存在于我们的生活中，为了更好的防范网络恶意攻击事件的发生，网络威胁情报自主监测平台应运而生。
+                    网络威胁情报自主监测平台 (Cyber threat intelligence autonomous monitoring platform，简称 CTIM)</p>
+                <p class="text">平台的核心功能：位于首页的安全日志分析，分析的数据将在首页的日志可视化面板进行展示；</p>
+                <p class="text">自主安全检测功能：由敏感路径扫描、子域名检测、CMS指纹识别功能构成；</p>
+                <p class="text">辅助功能：由字典管理、PushPlus信息推送服务、数据文件下载导出功能构成。</p>
+                <p class="text">登录注册功能：平台需注册普通用户登录才能访问，如果不能注册登录，请联系平台管理员。</p>
+
+
+                <h2>登录/注册</h2>
+                <img src="/static/my/img/helpdoc/login.png" alt="">
+                <img src="/static/my/img/helpdoc/backend.png" alt="">
+                <p>本平台允许普通用户和超级管理员用户使用，只有超级管理员用户能够登录后台管理页面，并有权销毁或注册普通用户账号。</p>
+                <p>用户登录成功后在平台右上角会显示用户名，超级管理员在用户名下可以打开后台管理页面，而普通用户仅能注销退出。</p>
+
+                <h2>首页</h2>
+                <img src="/static/my/img/helpdoc/index.png">
+                <p>安全日志分析功能列表:</p>
+                <p class="text">系统日志分析采用后端自动分析加载的方式，通过分析系统日志实现对攻击事件进行识别判断。</p>
+                <p>● 攻击事件列表：会将实时所受攻击的检测结果详细展示出来，方便了系统管理人员对攻击作出防御方向的判断。</p>
+                <p>● 攻击时间折线图：显示了一天各个时间段内，所遭受到的攻击次数。</p>
+                <p>● 数据下载功能：可以将安全日志分析数据导出为 Excel表格</p>
+
+                <h2>敏感路径扫描</h2>
+                <img src="/static/my/img/helpdoc/pathscan.png">
+                <img src="/static/my/img/helpdoc/pathscan1.png">
+                <p>● 使用方法：按照输入框中的提示输需要检测的网址即可。如：https://www.baidu.com，再点击搜索按钮。</p>
+                <p>扫描时间稍长，需要2分钟左右，检测出的子域名结果将会直接输出在页面。</p>
+
+                <h2>子域名检测</h2>
+                <img src="/static/my/img/helpdoc/domain.png">
+                <img src="/static/my/img/helpdoc/domain1.png">
+                <p>● 使用方法：按照输入框中的提示信息，输入需要检测的域名即可。如：baidu.com，然后点击搜索按钮。</p>
+                <p>扫描等待时间约 1-2 分钟，检测出的子域名数据结果将会直接输出在页面，并且会有数据加载成功的提示信息。</p>
+
+                <h2>字典管理</h2>
+                <img src="/static/my/img/helpdoc/dict.png">
+                <p>● 使用方法：该功能是用于向敏感路径扫描模块和子域名检测模块添加检测所需的字典库，按照右侧提示信息的格式，
+                    在对应的输入框输入所需要添加的字典， 然后点击下方对应的提交按钮即可，添加的字典数据将会在后台字典库中写入并保存。
+                    字典添加成功后会显示对应的提交成功提示信息</p>
+
+
+                <h2>CMS指纹识别</h2>
+                <img src="/static/my/img/helpdoc/cms.png">
+                <img src="/static/my/img/helpdoc/cms1.png">
+                <p>● 使用方法：在输入栏输入正确的网站地址，点击搜索按钮即可。
+                    等待1-2分值数据即可加载成功！页面会显示数据成功输出的提示信息</p>
+
+
+                <h2>信息推送服务</h2>
+                <img src="/static/my/img/helpdoc/token_error.png">
+                <p>● 使用方法：首先在pushplus官网 https://www.pushplus.plus/ 注册账号，
+                    并将账号的token值输入到信息推送服务页面的输入框中，点击提交即可。</p>
+                <p>token修改成功后，界面会弹出token修改成功的提示！</p>
+                <p>● 功能介绍：在执行完敏感路径扫描、子域名检测、CMS指纹识别等数据的查询后，
+                    推送管理模块会依据token值将查询的结果推送到指定用户的微信上，方便用户及时查看。</p>
+
+            </section>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>字典管理</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/my/css/dicmanage.css">
+{% endblock %}
+
+{% block panel %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="body">
+        <div class="info_body">
+            <div class="info_main">
+                <div class="title">
+                    添加扫描字典集
+                </div>
+                <div class="dic_form">
+                    {% csrf_token %}
+                    {#多行文本输入框 #}
+                    <textarea name="" id="" rows="10" ref="dict_form_path" v-model="path_text_content" placeholder="输入需要新增的敏感路径字典集"></textarea>
+                    <button class="path_submit_button" @click="add_path_content">新增敏感路径字典</button>
+                </div>
+                <div class="dic_form">
+                    {% csrf_token %}
+{#                    多行文本输入框#}
+                    <textarea name="" id="" rows="10" ref="dict_form_domain" v-model="domamin_text_content" placeholder="输入需要新增的子域名字典集"></textarea>
+                    <button class="domain_submit_button" @click="add_domain_content">新增子域名字典</button>
+                </div>
+            </div>
+        </div>
+
+        {#右侧提示信息#}
+        <div class="sub_tips">
+            <div class="dic_title">
+                请参照如下格式按行输入字典数据：
+            </div>
+            <div class="title">
+                敏感路径字典输入格式：
+            </div>
+            <div class="dict_format">
+                <p>admins.php</p>
+                <p>admins/backup/</p>
+                <p>admins/</p>
+                <p>admins/log.txt</p>
+                <p>sign/</p>
+            </div>
+            <div class="title">
+                子域名字典输入格式：
+            </div>
+            <div class="dict_format">
+                <p>163.com</p>
+                <p>qq.com</p>
+                <p>123.cn</p>
+                <p>www.baidu.com</p>
+                <p>12306.cn</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

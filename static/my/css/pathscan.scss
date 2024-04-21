@@ -1,0 +1,71 @@
+.body {
+  display: flex;
+  width: 100%;
+
+  .info_data {
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //background-color: #5daf34;
+
+    .path_data {
+      margin: 20px 0 20px 0;
+      width: 900px;
+      height: calc(100% - 40px);
+      background-color: #ffffff;
+
+      .el-table .warning-row {
+        background: oldlace;
+      }
+
+      .el-table .success-row {
+        background: #f0f9eb;
+      }
+
+      .el-table th > .cell {
+        display: flex;
+        justify-content: center;
+      }
+
+      .el-table .cell {
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+
+  //侧边信息贴士
+  .safe_tips {
+    width: 30%;
+    background-color: #ffffff;
+    margin: 20px;
+    border-radius: 5px;
+
+
+    .tips_content {
+      margin: 10px 10px 0 10px;
+      width: calc(100% - 30px);
+
+      .title {
+        color: #26c6da;
+        font-size: 18px;
+        margin: 10px 0;
+        border-bottom: 2px solid #808595;
+      }
+
+      .content_info {
+        > p {
+          font-size: 15px;
+          margin-bottom: 10px;
+          //border: 1px solid #808595;
+        }
+      }
+
+    }
+  }
+}
+
+body {
+  margin: 0;
+}

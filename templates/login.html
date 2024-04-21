@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>欢迎用户登录</title>
+    {% endblock %}
+
+    <link rel="stylesheet" href="/static/my/css/reset.css">
+    <link rel="stylesheet" href="/static/my/css/login.css">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="/static/elementui/theme-chalk/index.css">
+
+</head>
+
+<body>
+<div id="app">
+    <div class="background">
+        <img src="/static/my/img/login/Hacker.gif" alt="" class="left">
+        <img src="/static/my/img/login/Rocket.gif" alt="" class="right">
+    </div>
+    <main>
+        <div class="top">
+            <div class="title">
+                <p>欢迎访问网络威胁情报自主监测平台</p>
+                {% block main_title %}
+                    <a href="/login" class="active">登录</a> / <a href="/sign">注册</a>
+                {% endblock %}
+            </div>
+
+            <div class="login_forms">
+                {% csrf_token %}
+                {% block form %}
+                    <input type="text" ref="login_form_name" v-model="login_form.name" placeholder="请输入用户名">
+                    <input type="password" ref="login_form_pwd" v-model="login_form.pwd" placeholder="请输入密码">
+                    <div class="code">
+                        <input type="text" ref="login_form_code" v-model="login_form.code" placeholder="请输入验证码">
+                        <img @click="get_random_code" src="/static/my/img/login/code.png" alt="">
+                    </div>
+                    <button @click="login">登录</button>
+                {% endblock %}
+            </div>
+        </div>
+
+    </main>
+</div>
+
+
+<script src="/static/axios/axios.min.js"></script>
+<script src="/static/vue/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="/static/elementui/index.js"></script>
+<script>
+    //axios请求中间件
+    axios.interceptors.request.use(request => {
+        if (request.method === "post") {
+            let csrftoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+            {#console.log(csrftoken)#}
+            request.headers['X-CSRFToken'] = csrftoken
+        }
+        return request
+    })
+    //axios响应中间件
+    axios.interceptors.response.use(response => {
+        return response.data
+    })
+
+    new Vue({
+        el: '#app',  //挂载到app上
+        data: {
+            login_form: {
+                name: '',
+                pwd: '',
+                code: ''
+            },
+            sign_form: {
+                name: '',
+                pwd: '',
+                re_pwd: '',
+                code: ''
+            }
+        },
+        methods: {
+            login() {
+                axios.post('/api/login/', this.login_form).then(res => {
+                    if (res.code) {
+                        //验证失败
+                        this.$message.error(res.msg)
+                        this.$refs[`login_form_${res.self}`].focus()    //获取输入框焦点
+                        return
+                    }
+                    this.$message.success(res.msg)
+                    setTimeout(() => {    //实现登录成功后1s 跳转到首页
+                        location.href = '/'
+                    }, 1000)
+                })
+            },
+
+            sign() {
+                axios.post('/api/sign/', this.sign_form).then(res => {
+                    if (res.code) {
+                        //验证失败
+                        this.$message.error(res.msg)
+                        this.$refs[`sign_form_${res.self}`].focus()    //获取输入框焦点
+                        return
+                    }
+                    this.$message.success(res.msg)
+                    setTimeout(() => {    //实现注册成功后1s 跳转到首页
+                        location.href = '/login/'
+                    }, 3000)
+                })
+            },
+
+            get_random_code(e) {
+                // 添加时间戳
+                let date = new Date().getTime()
+                e.target.src = '/login/random_code/?timestamp=' + date
+            },
+        }
+
+    })
+</script>
+</body>
+</html>
+

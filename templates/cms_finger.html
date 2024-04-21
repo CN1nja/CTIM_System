@@ -1,0 +1,74 @@
+{% extends 'pathscan.html' %}
+
+{% block title %}
+    <title>CMS指纹识别</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/my/css/cmsfinger.css">
+    <link rel="stylesheet" href="/static/my/css/search.css">
+{% endblock %}
+
+{% block search %}
+    <input type="text" v-model="search_form.cms_site" placeholder="请输入网址如：https://shangwendada.co">
+    <button @click="cms_get_data">搜索</button>
+{% endblock %}
+
+{% block panel %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="body_content">
+        <div class="statement">
+            <p>*声明：本站只是帮助用户快速了解网站架构，不会对目标站点进行扫描或攻击，所有数据均查询自其他互联网公开接口。*</p>
+        </div>
+
+        <div class="cms_body">
+            <div class="cms_body_data">
+                <div class="cms_data">
+                    <el-descriptions
+                            v-loading="loading"
+                            element-loading-text="拼命加载中"
+                            element-loading-spinner="el-icon-loading"
+                            element-loading-background="rgba(0, 0, 0, 0.8)"
+
+                            title="网站CMS指纹信息"
+                            :column="1"
+                            border>
+                        <el-descriptions-item
+                                label="URL地址"
+                                label-class-name="my-label"
+                                content-class-name="my-content"
+                        >{{ cms_data.URL_address }}</el-descriptions-item>
+                        <el-descriptions-item
+                                label="网站CMS指纹信息"
+                        >{{ cms_data.CMS_finger }}</el-descriptions-item>
+                        <el-descriptions-item
+                                label="Banner指纹信息"
+                        >{{ cms_data.Banner }}</el-descriptions-item>
+                    </el-descriptions>
+                </div>
+            </div>
+
+            {#CMS显示信息说明#}
+            <div class="cms_tips">
+                <div class="tips_content">
+                    <div class="title">CMS 指纹信息</div>
+                    <p>● CMS 即内容管理系统，指的是一种软件应用程序，它可以让用户轻松地创建、编辑、发布和管理数字内容。这些内容可以是网站的页面、文章、图片、音频、视频等等。</p>
+                    <p>● 常见的CMS软件包括WordPress、Drupal、Joomla等等</p>
+                    <p>● CMS指纹信息可以帮助安全专家识别网站是否使用 WordPress 等以及使用的版本号。针对已知的漏洞或安全问题，安全专家可以使用这些信息来快速确认是否受到潜在的攻击威胁。</p>
+
+                    <div class="title">Banner 指纹信息</div>
+                    <p>● Banner 指纹信息是一种网络指纹识别技术，其包含 Web 服务器的操作系统、Web 服务器软件和应用程序等信息</p>
+                    <p>● Banner 指纹信息可以帮助安全测试人员、网络管理员识别 Web 服务器的弱点和漏洞，以便进行防御和维护升级。</p>
+                    <p>● 同时，这种技术也可以用于 Web 应用程序的识别和分析，以帮助开发人员进行优化和改进。</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

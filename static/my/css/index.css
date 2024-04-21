@@ -1,0 +1,215 @@
+#app {
+  width: 100%;
+}
+
+.panel_nav {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  box-sizing: border-box;
+}
+.panel_nav .time_title {
+  width: 35%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+  background-color: #3D4150FF;
+  color: #f1f1f1;
+  padding-left: 20px;
+}
+.panel_nav .time_title::before {
+  display: block;
+  content: "";
+  position: absolute;
+  right: 100px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px solid #ffffff;
+  border-right: 20px solid #ffffff;
+  border-left: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+}
+.panel_nav .time_title::after {
+  display: block;
+  width: 100px;
+  height: 40px;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #ffffff;
+}
+.panel_nav .log_title {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: #3D4150FF;
+  color: #f1f1f1;
+}
+.panel_nav .log_title .h3 {
+  font-size: 16px;
+}
+.panel_nav .log_title::before {
+  display: block;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 20px solid #ffffff;
+  border-right: 20px solid #ffffff;
+  border-left: 20px solid transparent;
+  border-top: 20px solid transparent;
+}
+.panel_nav .log_title::after {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-left: 20px solid #ffffff;
+  border-bottom: 20px solid #ffffff;
+  border-top: 20px solid transparent;
+  border-right: 20px solid transparent;
+}
+.panel_nav .other_info {
+  width: 35%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  position: relative;
+  background-color: #3D4150FF;
+  color: #f1f1f1;
+  padding-right: 20px;
+}
+.panel_nav .other_info::before {
+  display: block;
+  content: "";
+  position: absolute;
+  left: 100px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 20px solid #ffffff;
+  border-left: 20px solid #ffffff;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+}
+.panel_nav .other_info::after {
+  display: block;
+  width: 100px;
+  height: 40px;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #ffffff;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 596px;
+}
+.main .analyse_body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
+}
+.main .analyse_body .attack_time_pie {
+  width: 20%;
+  height: 100%;
+  position: relative;
+}
+.main .analyse_body .attack_time_pie p {
+  padding: 5px;
+  font-size: 15px;
+  position: relative;
+}
+.main .analyse_body .attack_time_pie p::after {
+  display: block;
+  content: "";
+  width: 230px;
+  height: 2px;
+  background-color: #808595;
+  position: absolute;
+  left: 22px;
+  bottom: -2px;
+}
+.main .analyse_body .attack_time_pie .pie {
+  width: 490px;
+  height: 500px;
+  position: absolute;
+  top: 91px;
+  left: 10px;
+}
+.main .analyse_body .event_list {
+  width: 60%;
+  height: 100%;
+}
+.main .analyse_body .event_list p {
+  padding: 5px;
+  font-size: 15px;
+  position: relative;
+}
+.main .analyse_body .event_list p::after {
+  display: block;
+  content: "";
+  width: 800px;
+  height: 2px;
+  background-color: #808595;
+  position: absolute;
+  left: 22px;
+  bottom: -2px;
+}
+.main .analyse_body .histogram {
+  width: 20%;
+  height: 100%;
+}
+.main .analyse_body .histogram p {
+  padding: 5px;
+  font-size: 15px;
+  position: relative;
+}
+.main .analyse_body .histogram p::after {
+  display: block;
+  content: "";
+  width: 230px;
+  height: 2px;
+  background-color: #808595;
+  position: absolute;
+  left: 22px;
+  bottom: -2px;
+}
+.main .time_attack_table {
+  width: calc(100% - 50px);
+  height: 30%;
+}
+.main .time_attack_table p {
+  padding: 5px;
+  font-size: 15px;
+  border-bottom: 2px solid #808595;
+}
+.main .time_attack_table .bottom-middle-main {
+  position: relative;
+  top: 30px;
+  left: 50px;
+}
+
+.tip {
+  size: 8px;
+  float: left;
+  margin: 1.5vh;
+}
+
+/*# sourceMappingURL=index.css.map */

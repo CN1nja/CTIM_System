@@ -1,0 +1,87 @@
+{% extends 'index.html' %}
+
+{% block title %}
+    <title>敏感路径扫描</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/my/css/pathscan.css">
+    <link rel="stylesheet" href="/static/my/css/search.css">
+{% endblock %}
+
+{% block search-box %}
+    <div class="search-box">
+        {% csrf_token %}
+        {% block search %}
+            <input type="text" ref="path_submit" v-model="search_form.link" placeholder="请输入网址如：https://www.baidu.com">
+            <button @click="path_search">搜索</button>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block panel %}
+
+{% endblock %}
+
+{% block main %}
+    <div class="body">
+        <div class="info_data">
+            <div class="path_data">
+                <el-table
+                        v-loading="loading"
+                        element-loading-text="拼命加载中,扫描需要5-6分钟"
+                        :data="tableData"
+                        style="width: 100%"
+                        :row-class-name="tableRowClassName">
+                    <el-table-column
+                            prop="status"
+                            label="HTTP响应码"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="type"
+                            label="Content-Type"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="size"
+                            label="大小"
+                            width="180">
+                    </el-table-column>
+                    <el-table-column
+                            prop="url"
+                            label="敏感路径">
+                    </el-table-column>
+                </el-table>
+            </div>
+        </div>
+
+        {#侧边安全信息小贴士#}
+        <div class="safe_tips">
+            <div class="tips_content">
+                <div class="title">
+                    漏洞危害
+                </div>
+                <div class="content_info">
+                    <p>敏感路径可能包含了大量的敏感文件和信息。利用相关漏洞，攻击者可全面了解目标服务器的网站架构，甚至获取敏感文件中的敏感信息，从而得到目标服务器的控制权，实施进一步攻击。</p>
+                    <p>敏感名称的目录。如/admin、/conf、/backup、/db等。某些攻击手段依赖网站的绝对路径，比如用SQL注入写webshell。</p>
+                    <p>● 攻击者可以通过构造特殊URL地址，触发系统web应用程序报错，在回显内容中，获取网站敏感信息。</p>
+                    <p>● 攻击者可以利用泄漏的敏感信息，获取网站服务器web路径，为进一步攻击提供帮助。</p>
+                    <p>● 攻击者可能通过文件名，也许还能猜出其它的文件名或目录名，并尝试访问它们。这些可能包含敏感信息。攻击者通过搜集信息，以便进一步攻击目标站点。</p>
+                </div>
+                <div class="title">
+                    修复建议
+                </div>
+                <div class="content_info">
+                    <p>● 将后台登录地址隐藏，修改为隐匿性更高的路径。</p>
+                    <p>● 经常用于存放敏感文件的目录，可以考虑从网站目录中分离出，或修改为非常规的路径名称，并配置好访问权限。</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

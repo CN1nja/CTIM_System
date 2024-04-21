@@ -1,0 +1,56 @@
+.body {
+  display: flex;
+  width: 100%;
+}
+.body .info_data {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body .info_data .path_data {
+  margin: 20px 0 20px 0;
+  width: 900px;
+  height: calc(100% - 40px);
+  background-color: #ffffff;
+}
+.body .info_data .path_data .el-table .warning-row {
+  background: oldlace;
+}
+.body .info_data .path_data .el-table .success-row {
+  background: #f0f9eb;
+}
+.body .info_data .path_data .el-table th > .cell {
+  display: flex;
+  justify-content: center;
+}
+.body .info_data .path_data .el-table .cell {
+  display: flex;
+  justify-content: center;
+}
+.body .safe_tips {
+  width: 30%;
+  background-color: #ffffff;
+  margin: 20px;
+  border-radius: 5px;
+}
+.body .safe_tips .tips_content {
+  margin: 10px 10px 0 10px;
+  width: calc(100% - 30px);
+}
+.body .safe_tips .tips_content .title {
+  color: #26c6da;
+  font-size: 18px;
+  margin: 10px 0;
+  border-bottom: 2px solid #808595;
+}
+.body .safe_tips .tips_content .content_info > p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+body {
+  margin: 0;
+}
+
+/*# sourceMappingURL=pathscan.css.map */

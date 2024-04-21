@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>首页</title>
+    {% endblock %}
+
+    {% block css %}
+        <link rel="stylesheet" href="/static/my/css/index.css">
+    {% endblock %}
+    <link rel="stylesheet" href="/static/my/css/base.css">
+    <link rel="stylesheet" href="/static/my/css/reset.css">
+    <link rel="stylesheet" href="/static/fontawesome-free-5/css/all.min.css">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="/static/element-ui@2.15.13/lib/theme-chalk/index.css">
+
+    <script src="/static/vue/vue.js"></script>
+    <script src="/static/jquery/jquery-3.6.0.min.js"></script>
+    <!-- 引入组件库 -->
+    <script src="/static/element-ui@2.15.13/lib/index.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <div class="top">
+        <p>
+            <span class="top-left">CTIM</span>
+            <span class="top-right">网络威胁情报自主监测平台</span>
+        </p>
+    </div>
+
+    <div class="nav">
+        <div class="left" id="dynamic_nav">
+            <a href="/">首页</a>
+            <a href="/pathscan/">敏感路径扫描</a>
+            <a href="/subdomain/">子域名检测</a>
+            <a href="/cmsfinger/">CMS指纹识别</a>
+            <a href="/dicmanage/">字典管理</a>
+            <a href="/pushplus/">信息推送服务</a>
+            <a href="/helpdoc/">帮助文档</a>
+        </div>
+        <div class="right">
+            <el-dropdown>
+              <span class="el-dropdown-link">
+                数据下载<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item><a href="/api/logdata_down/" target="_blank">攻击日志数据</a></el-dropdown-item>
+                    <el-dropdown-item divided><a href="/api/pathdata_down/" target="_blank">敏感路径数据</a>
+                    </el-dropdown-item>
+                    <el-dropdown-item divided><a href="/api/domaindata_down/" target="_blank">子域名数据</a>
+                    </el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+
+            {% if request.user.username %}
+                <el-dropdown>
+                    <span class="el-dropdown-link">
+                        {{ request.user.username }}<i class="el-icon-arrow-down el-icon--right"></i>
+                    </span>
+                    <el-dropdown-menu slot="dropdown">
+                        {% if request.user.is_superuser %}
+                            <el-dropdown-item><a href="/webmaster/">后台管理</a></el-dropdown-item>
+                        {% endif %}
+                        <el-dropdown-item><a href="/logout/">注销退出</a></el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+            {% else %}
+                <a href="/login/">登录</a>
+{#                <a href="/sign/">注册</a>#}
+            {% endif %}
+        </div>
+    </div>
+
+    {% block search-box %}
+
+    {% endblock %}
+
+    {% block panel %}
+        <div class="panel_nav">
+            <div class="time_title">
+                <p>当前时间：</p>
+                <p id="time"></p>
+            </div>
+            <div class="log_title">
+                <h3>安全日志分析面板</h3>
+            </div>
+            <div class="other_info">
+                <p>数据展示</p>
+            </div>
+        </div>
+    {% endblock %}
+
+    <main>
+        {% block main %}
+            <div class="main">
+                <div class="analyse_body">
+                    <div class="attack_time_pie">
+                        <img src="/static/my/img/main/tip.png" alt="" class="tip">
+                        <p>攻击时间饼状图</p>
+                        <div class="pie">
+                            <div id="attackpie" style="width:380px;height:200px; "></div>
+                        </div>
+                    </div>
+                    <div class="event_list">
+                        <img src="/static/my/img/main/tip.png" alt="" class="tip">
+                        <p>攻击事件列表</p>
+                        <div class="attack_event_data">
+                            <el-table
+                                    :data="eventData"
+                                    style="width: 100%"
+                                    height="350">
+                                <el-table-column
+                                        fixed
+                                        prop="time"
+                                        label="攻击时间"
+                                        width="180">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="type"
+                                        label="事件类型"
+                                        width="150">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="ip"
+                                        label="攻击源IP"
+                                        width="150">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="location"
+                                        label="攻击源地区"
+                                        width="150">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="country"
+                                        label="攻击所属"
+                                        width="200">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="protocol"
+                                        label="攻击协议"
+                                        width="150">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="port"
+                                        label="攻击端口"
+                                >
+                                </el-table-column>
+                            </el-table>
+                        </div>
+                    </div>
+                    <div class="histogram">
+                        <img src="/static/my/img/main/tip.png" alt="" class="tip">
+                        <p>事件雷达</p>
+                        <div id="eventrader" style="width: 100%;height:100%;"></div>
+                    </div>
+                </div>
+
+                <div class="time_attack_table">
+                    <img src="/static/my/img/main/tip1.png" alt="" class="tip">
+                    <p>攻击时间折线图</p>
+                    <div class="bottom-middle-main">
+                        <div id="timeattack" style="width:90%;height:90%; "></div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+</div>
+
+<script src="/static/axios/axios.min.js"></script>
+<script>
+    //axios请求中间件
+    axios.interceptors.request.use(request => {
+        if (request.method === "post") {
+            let csrftoken = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+            {#console.log(csrftoken)#}
+            request.headers['X-CSRFToken'] = csrftoken
+        }
+        return request
+    })
+    //axios响应中间件
+    axios.interceptors.response.use(response => {
+        return response.data
+    })
+
+    function dynamic_navigation() {
+        let a_list = document.querySelectorAll('#dynamic_nav>a')
+        let path = location.pathname
+        for (const a of a_list) {
+            let a_href = a.getAttribute('href')
+            if (a_href === path || a_href + '/' === path) {
+                a.classList.add('active')
+            }
+        }
+    }
+
+    dynamic_navigation()
+
+    new Vue({   //配置Vue
+        el: '#app',     //元素挂载的位置是app
+        delimiters: ["[[", "]]"],   //避免与django中的模板语法冲突
+        methods: {
+            tableRowClassName({row, rowIndex}) {
+                if (rowIndex % 2 === 0) {
+                    return 'warning-row';
+                } else if (rowIndex % 2 === 1) {
+                    return 'success-row';
+                }
+                return '';
+            },
+
+            path_search() {
+                axios.post('/api/pathscan/', this.search_form).then(res => {
+                    if (res.code) {
+                        //验证失败
+                        this.$message.error(res.msg)
+                        this.$refs['path_submit'].focus()
+                        setTimeout(() => {
+                            location.reload()   //重新加载
+                        }, 1200)
+                        return
+                    }
+                    this.$message.success(res.msg)
+                    this.tableData = JSON.parse(res.data)
+                    console.log(this.tableData)
+                    this.loading = 0
+                })
+                this.loading = 1
+            },
+            subdomain_search() {
+                axios.post('/api/subdomain/', this.search_form).then(res => {
+                    if (res.code) {
+                        //验证失败
+                        this.$message.error(res.msg)
+                        this.$refs['domain_submit'].focus()
+                        setTimeout(() => {
+                            location.reload()   //重新加载
+                        }, 1200)
+                        return
+                    }
+                    this.$message.success(res.msg)
+                    this.tableData = JSON.parse(res.data)
+                    this.loading = 0
+                })
+                this.loading = 1
+            },
+            add_domain_content() {
+                axios.post('/api/dicmanage/', {domain_content: this.domamin_text_content}).then(res => {
+                    if (res.code) {
+                        //验证失败
+                        this.$message.error(res.msg)
+                        this.$refs['dict_form_domain'].focus()
+                        return
+                    }
+                    this.$message.success(res.msg)
+                })
+            },
+            add_path_content() {
+                axios.post('/api/dicmanage/', {path_content: this.path_text_content}).then(res => {
+                    if (res.code) {
+                        //验证失败
+                        this.$message.error(res.msg)
+                        this.$refs['dict_form_path'].focus()
+                        return
+                    }
+                    this.$message.success(res.msg)
+                })
+            },
+            cms_get_data() {
+                axios.post('/api/cmsfinger/', this.search_form).then(res => {
+                    if (res.code) {
+                        //验证失败
+                        this.$message.error(res.msg)
+                        {#this.$refs['dict_form_path'].focus()#}
+                        setTimeout(() => {
+                            location.reload()   //重新加载
+                        }, 1200)
+                        return
+                    }
+                    this.$message.success(res.msg)
+                    setTimeout(() => {
+                        location.reload()   //重新加载
+                    }, 2500)
+                    this.loading = 0
+                })
+                this.loading = 1
+            },
+
+            token_push() {
+                axios.post('/api/pushplus/', this.search_form).then(res => {
+                    if (res.code) {
+                        //验证失败
+                        this.$message.error(res.msg)
+                        this.$refs['push_input'].focus()
+                        return
+                    }
+                    this.$message.success(res.msg)
+                })
+            },
+        },
+        data() {
+            return {
+                search_form: {
+                    link: '',
+                    domain: '',
+                    cms_site: '',
+                    token_info: '',
+                },
+                tableData: [],
+                loading: null,
+
+                path_text_content: '',
+                domamin_text_content: '',
+                eventData: [],
+            }
+        },
+        mounted() {
+            axios.get("/attack_event").then(res => {
+                this.eventData = JSON.parse(res)
+            })
+        }
+
+    })
+</script>
+
+
+{% block js %}
+    <script>
+        // 获取页面中的日期时间显示元素
+        var datetimeDisplay = document.getElementById("time");
+
+        // 更新日期和时间的函数
+        function updateDateTime() {
+            var currentDateTime = new Date();
+            var year = currentDateTime.getFullYear();
+            var month = currentDateTime.getMonth() + 1; // JavaScript中月份是从0开始计数，所以要加1
+            var day = currentDateTime.getDate();
+
+            // 将月份和日期转换为两位数字
+            month = (month < 10 ? "0" : "") + month;
+            day = (day < 10 ? "0" : "") + day;
+
+            // 将日期时间字符串显示在页面中的日期时间显示元素上
+            datetimeDisplay.innerHTML = year + "-" + month + "-" + day + " " + currentDateTime.toLocaleTimeString();
+        }
+
+        // 每隔一秒钟调用一次 updateDateTime 函数
+        setInterval(updateDateTime, 1000);
+    </script>
+
+    <script src="/static/my/js/echarts.js"></script>
+    <script src="/static/my/js/timeattack.js"></script>
+    <script src="/static/my/js/attackpie.js"></script>
+    <script src="/static/my/js/eventrader.js"></script>
+{% endblock %}
+
+</body>
+</html>

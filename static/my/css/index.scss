@@ -1,0 +1,252 @@
+#app {
+  width: 100%;
+  //height: calc(100% - 40px);
+}
+
+.panel_nav {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  box-sizing: border-box;
+
+  .time_title {
+    width: 35%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    position: relative;
+    background-color: #3D4150FF;
+    color: #f1f1f1;
+    padding-left: 20px;
+
+    //伪元素
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      right: 100px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 20px solid #ffffff;
+      border-right: 20px solid #ffffff;
+      border-left: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+    }
+
+    &::after {
+      display: block;
+      width: 100px;
+      height: 40px;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      background-color: #ffffff;
+    }
+  }
+
+  .log_title {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #3D4150FF;
+    color: #f1f1f1;
+
+    .h3 {
+      font-size: 16px;
+    }
+
+    //伪元素，做一个小三角
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-bottom: 20px solid #ffffff;
+      border-right: 20px solid #ffffff;
+      border-left: 20px solid transparent;
+      border-top: 20px solid transparent;
+    }
+
+    &::after {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-left: 20px solid #ffffff;
+      border-bottom: 20px solid #ffffff;
+      border-top: 20px solid transparent;
+      border-right: 20px solid transparent;
+    }
+  }
+
+  .other_info {
+    width: 35%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: relative;
+    background-color: #3D4150FF;
+    color: #f1f1f1;
+    padding-right: 20px;
+
+    //伪元素
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      left: 100px;
+      top: 0;
+      width: 0;
+      height: 0;
+      border-top: 20px solid #ffffff;
+      border-left: 20px solid #ffffff;
+      border-right: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+    }
+
+    &::after {
+      display: block;
+      width: 100px;
+      height: 40px;
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      background-color: #ffffff;
+    }
+  }
+}
+
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 596px;
+
+  .analyse_body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70%;
+
+    .attack_time_pie {
+      width: 20%;
+      height: 100%;
+      position: relative;
+
+      p {
+        padding: 5px;
+        font-size: 15px;
+        position: relative;
+
+        //伪元素
+        &::after {
+          display: block;
+          content: "";
+          width: 230px;
+          height: 2px;
+          background-color: #808595;
+          position: absolute;
+          left: 22px;
+          bottom: -2px;
+        }
+      }
+
+      .pie {
+        width: 490px;
+        height: 500px;
+        position: absolute;
+        top: 91px;
+        left: 10px;
+      }
+
+    }
+
+    .event_list {
+      width: 60%;
+      height: 100%;
+      //background-color: #5daf34;
+
+      p {
+        padding: 5px;
+        font-size: 15px;
+        position: relative;
+
+        //伪元素
+        &::after {
+          display: block;
+          content: "";
+          width: 800px;
+          height: 2px;
+          background-color: #808595;
+          position: absolute;
+          left: 22px;
+          bottom: -2px;
+        }
+      }
+
+
+    }
+
+    .histogram {
+      width: 20%;
+      height: 100%;
+      //background-color: #ff9800;
+
+      p {
+        padding: 5px;
+        font-size: 15px;
+        position: relative;
+
+        //伪元素
+        &::after {
+          display: block;
+          content: "";
+          width: 230px;
+          height: 2px;
+          background-color: #808595;
+          position: absolute;
+          left: 22px;
+          bottom: -2px;
+        }
+      }
+    }
+  }
+
+  .time_attack_table {
+    width: calc(100% - 50px);
+    height: 30%;
+    //background-color: #5daf34;
+
+    p {
+      padding: 5px;
+      font-size: 15px;
+      border-bottom: 2px solid #808595;
+    }
+
+    .bottom-middle-main {
+      position: relative;
+      top: 30px;
+      left: 50px;
+    }
+
+  }
+}
+
+.tip {
+  size: 8px;
+  float: left;
+  margin: 1.5vh;
+}

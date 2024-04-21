@@ -1,0 +1,111 @@
+.body {
+  display: flex;
+  width: 100%;
+  height: 638px;
+  box-sizing: border-box;
+  background-color: #f5f5f5;
+}
+.body .info_body {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.body .info_body .info_main {
+  margin: 20px 0 20px 0;
+  width: 800px;
+  height: calc(100% - 40px);
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+.body .info_body .info_main .title {
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #282a35;
+  color: #f0eeee;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 5px 5px 0 0;
+}
+.body .info_body .info_main .dic_form {
+  height: 160px;
+  margin: 20px;
+  width: calc(100% - 100px);
+  background-color: #f5f5f5;
+  padding: 20px;
+  position: relative;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+}
+.body .info_body .info_main .dic_form textarea {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  resize: none;
+  font-size: 20px;
+}
+.body .info_body .info_main .dic_form textarea:focus {
+  outline: none;
+}
+.body .info_body .info_main .dic_form .path_submit_button,
+.body .info_body .info_main .dic_form .domain_submit_button {
+  width: 140px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: #282a35;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  bottom: -55px;
+}
+.body .info_body .info_main .dic_form .path_submit_button {
+  left: 0;
+  bottom: -55px;
+}
+.body .info_body .info_main .dic_form:last-child {
+  margin-top: 55px;
+}
+.body .sub_tips {
+  width: 25%;
+  background-color: #ffffff;
+  margin: 20px;
+  border-radius: 5px;
+  height: calc(100% - 40px);
+}
+.body .sub_tips .dic_title {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 0 10px 10px;
+  color: #FFFFFF;
+  background-color: #282a35;
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 10px;
+}
+.body .sub_tips .title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+}
+.body .sub_tips .dict_format {
+  background-color: #f5f5f5;
+  color: #282a35;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.08);
+}
+.body .sub_tips .dict_format p {
+  padding: 2px 0;
+}
+
+/*# sourceMappingURL=dicmanage.css.map */

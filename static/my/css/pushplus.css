@@ -1,0 +1,25 @@
+.pushplus_main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pushplus_main .content {
+  width: 600px;
+  height: 200px;
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+.pushplus_main .content > h3 {
+  text-align: center;
+  background-color: #282a35;
+  color: #f0eeee;
+  border-radius: 5px 5px 0 0;
+  padding: 5px 0;
+}
+.pushplus_main .content > p {
+  font-size: 14px;
+  padding: 10px 10px 0 10px;
+  font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+}
+
+/*# sourceMappingURL=pushplus.css.map */
